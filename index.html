@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRENDLINKS - Complete Looks</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+        }
+
+        /* Header */
+        .header {
+            background: #E5B4DB;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .top-banner {
+            background: linear-gradient(90deg, #ff6b6b, #ffa500);
+            color: white;
+            text-align: center;
+            padding: 8px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            color: #000;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .logo img {
+            height: 40px; /* Adjust as needed */
+            vertical-align: middle;
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 500px;
+            margin: 0 30px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 50px 12px 20px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .search-input:focus {
+            border-color: #ff6b6b;
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #ff6b6b;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .search-btn:hover {
+            background: #ff5252;
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-icon {
+            font-size: 20px;
+            color: #333;
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-icon:hover {
+            color: #ff6b6b;
+        }
+
+        /* Main Content */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .page-subtitle {
+            text-align: center;
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        /* Look Sections */
+        .look-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .look-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .look-title {
+            font-size: 28px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+            position: relative;
+        }
+
+        .look-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #ff6b6b, #ffa500);
+            border-radius: 2px;
+        }
+
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .item-category {
+            text-align: center;
+        }
+
+        .category-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .item-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .item-card {
+            background: #f9f9f9;
+            border-radius: 15px;
+            padding: 20px;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .item-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .item-card:hover::before {
+            left: 100%;
+        }
+
+        .item-card:hover {
+            transform: scale(1.05);
+            border-color: #ff6b6b;
+            box-shadow: 0 10px 25px rgba(255,107,107,0.3);
+        }
+
+        .item-card.selected { 
+            border-color: #ff6b6b;
+            background: linear-gradient(135deg, #fff5f5, #ffe0e0);
+        }
+
+        .item-image {
+            width: 100%;
+            height: 200px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #666;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg>');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .item-name {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .item-price {
+            color: #ff6b6b;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .item-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 16px;
+            background: #ff6b6b;
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 12px;
+            transition: background 0.3s;
+        }
+
+        .item-link:hover {
+            background: #ff5252;
+        }
+
+        /* Complete Look Button */
+        .complete-look {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .complete-look-btn {
+            background: linear-gradient(135deg, #ff6b6b, #ffa500);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .complete-look-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255,107,107,0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .search-bar {
+                margin: 0;
+                max-width: 100%;
+            }
+
+            .items-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .look-section {
+                padding: 20px;
+            }
+
+            .page-title {
+                font-size: 28px;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .look-section {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .look-section:nth-child(even) {
+            animation-delay: 0.2s;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="top-banner">
+            🔥 HOLIDAY SALE • FREE SHIPPING • FREE RETURNS 🔥
+        </div>
+        <nav class="nav-container">
+            <a href="#" class="logo"><img src="https://res.cloudinary.com/darlqkabf/image/upload/v1750705630/TREND_LOGO_si8hpj.png" alt="TRENDLINKS Logo"></a>
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="Search products...">
+                <button class="search-btn">🔍</button>
+            </div>
+            <div class="nav-icons">
+                <a href="#" class="nav-icon">👤</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-container">
+        <h1 class="page-title">Complete Looks</h1>
+        <p class="page-subtitle">Discover perfect combinations for your style</p>
+
+        <!-- Look 1 -->
+        <section class="look-section">
+            <h2 class="look-title">Look 1 - Casual Chic</h2>
+            
+            <div class="items-grid">
+                <!-- Shirts -->
+                <div class="item-category">
+                    <h3 class="category-title">Shirts</h3>
+                    <div class="item-options">
+                        <div class="item-card" onclick="selectItem(this)">
+                            <div class="item-image">
+                                <img src="https://img.ltwebstatic.com/images3_pi/2023/08/01/1690876800_thumbnail_900x.webp" alt="SHEIN Letter Print High Neck Cropped Top" onerror="this.style.display='none'">
+                            </div>
+                            <div class="item-name">SHEIN Letter Print High Neck Cropped Top</div>
+                            <div class="item-price">$ 45.90</div>
+                            <a href="http://api-shein.shein.com/h5/sharejump/appjump?link=lTRyUWw7Kww_8&localcountry=BR&url_from=GM71142081114" class="item-link" target="_blank">View Product</a>
+                        </div>
+                        <div class="item-card" onclick="selectItem(this)">
+                            <div class="item-image">
+                                <img src="https://img.ltwebstatic.com/images3_pi/2023/07/15/1689408000_thumbnail_900x.webp" alt="SHEIN Casual Oversized T-Shirt" onerror="this.style.display='none'">
+                            </div>
+                            <div class="item-name">SHEIN Casual Oversized T-Shirt</div>
+                            <div class="item-price">$ 52.90</div>
+                            <a href="http://api-shein.shein.com/h5/sharejump/appjump?link=lTRDqvOzFUV_8&localcountry=BR&url_from=GM71142081114" class="item-link" target="_blank">View Product</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pants -->
+                <div class="item-category">
+                    <h3 class="category-title">Pants</h3>
+                    <div class="item-options">
+                        <div class="item-card" onclick="selectItem(this)">
+                            <div class="item-image">
+                                <img src="https://img.ltwebstatic.com/images3_pi/2023/03/07/1678170889c42407408781a942823871407909320_thumbnail_900x.webp" alt="SHEIN Cargo Pants with Flap Pockets" onerror="this.style.display='none'">
+                            </div>
+                            <div class="item-name">SHEIN Cargo Pants with Flap Pockets</div>
+                            <div class="item-price">$ 68.90</div>
+                            <a href="http://api-shein.shein.com/h5/sharejump/appjump?link=lTRDvfiBfDP_8&localcountry=BR&url_from=GM71142081114" class="item-link" target="_blank">View Product</a>
+                        </div>
+                        <div class="item-card" onclick="selectItem(this)">
+                            <div class="item-image">
+                                <img src="https://img.ltwebstatic.com/images3_pi/2023/04/12/1681257600_thumbnail_900x.webp" alt="SHEIN High Waist Wide Leg Jeans" onerror="this.style.display='none'">
+                            </div>
+                            <div class="item-name">SHEIN High Waist Wide Leg Jeans</div>
+                            <div class="item-price">$ 72.90</div>
+                            <a href="http://api-shein.shein.com/h5/sharejump/appjump?link=lTRD2g9nCaw_8&localcountry=BR&url_from=GM71142081114" class="item-link" target="_blank">View Product</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sneakers -->
+                <div class="item-category">
+                    <h3 class="category-title">Sneakers</h3>
+                    <div class="item-options">
+                        <div class="item-card" onclick="selectItem(this)">
+                            <div class="item-image">
+                                <img src="https://img.ltwebstatic.com/images3_pi/2023/09/20/1695204489c42407408781a942823871407909320_thumbnail_900x.webp" alt="SHEIN Lace-Up Skate Sneakers" onerror="this.style.display='none'">
+                            </div>
+                            <div class="item-name">SHEIN Lace-Up Skate Sneakers</div>
+                            <div class="item-price">$ 89.90</div>
+                            <a href="http://api-shein.shein.com/h5/sharejump/appjump?link=lTRDQ2LU0ne_8&localcountry=BR&url_from=GM71142081114" class="item-link" target="_blank">View Product</a>
+                        </div>
+                        <div class="item-card" onclick="selectItem(this)">
+                            <div class="item-image">
+                                <img src="https://img.ltwebstatic.com/images3_pi/2023/06/10/1686355200_thumbnail_900x.webp" alt="SHEIN Platform Canvas Sneakers" onerror="this.style.display='none'">
+                            </div>
+                            <div class="item-name">SHEIN Platform Canvas Sneakers</div>
+                            <div class="item-price">$ 95.90</div>
+                            <a href="http://api-shein.shein.com/h5/sharejump/appjump?link=lTRDDEy7kXS_8&localcountry=BR&url_from=GM71142081114" class="item-link" target="_blank">View Product</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Necklaces -->
+                <div class="item-category">
+                    <h3 class="category-title">Necklaces</h3>
+                    <div class="item-options">
+                        <div class="item-card" onclick="selectItem(this)">
+                            <div class="item-image">
+                                <img src="https://img.ltwebstatic.com/images3_pi/2023/05/15/1684108800_thumbnail_900x.webp" alt="SHEIN Heart Pendant Necklace" onerror="this.style.display='none'">
+                            </div>
+                            <div class="item-name">SHEIN Heart Pendant Necklace</div>
+                            <div class="item-price">$ 25.90</div>
+                            <a href="http://api-shein.shein.com/h5/sharejump/appjump?link=lTqLusyUerE_8&localcountry=BR&url_from=GM71142081114" class="item-link" target="_blank">View Product</a>
+                        </div>
+                        <div class="item-card" onclick="selectItem(this)">
+                            <div class="item-image">
+                                <img src="https://img.ltwebstatic.com/images3_pi/2023/08/22/1692662400_thumbnail_900x.webp" alt="SHEIN Layered Chain Necklace" onerror="this.style.display='none'">
+                            </div>
+                            <div class="item-name">SHEIN Layered Chain Necklace</div>
+                            <div class="item-price">$ 29.90</div>
+                            <a href="http://api-shein.shein.com/h5/sharejump/appjump?link=lTqL5IeFz4I_8&localcountry=BR&url_from=GM71142081114" class="item-link" target="_blank">View Product</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="complete-look">
+                <button class="complete-look-btn" onmouseover="this.textContent='Open all product tabs'" onmouseout="this.textContent='Buy Complete Look'" onclick="openAllProductTabs()">Buy Complete Look</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Function to select item
+        function selectItem(element) {
+            // Toggle selection for the clicked item
+            element.classList.toggle('selected');
+
+            // If you want only one item per category to be selected at a time, uncomment the following:
+            // const category = element.closest('.item-category');
+            // const items = category.querySelectorAll('.item-card');
+            // items.forEach(item => {
+            //     if (item !== element) {
+            //         item.classList.remove('selected');
+            //     }
+            // });
+        }
+
+        // Function to open all product tabs
+        function openAllProductTabs() {
+            const productLinks = document.querySelectorAll('.item-link');
+            let delay = 0;
+            productLinks.forEach(link => {
+                setTimeout(() => {
+                    window.open(link.href, '_blank');
+                }, delay);
+                delay += 100; // Add 100ms delay for each tab
+            });
+        }
+
+        // Function to add images via URL - for easy image swapping
+        function addImageToItem(categoryName, optionIndex, imageUrl) {
+            const categories = document.querySelectorAll('.item-category');
+            categories.forEach(category => {
+                const title = category.querySelector('.category-title').textContent.toLowerCase();
+                if (title.includes(categoryName.toLowerCase())) {
+                    const items = category.querySelectorAll('.item-card');
+                    if (items[optionIndex]) {
+                        const img = items[optionIndex].querySelector('.item-image img');
+                        img.src = imageUrl;
+                        img.style.display = 'block';
+                    }
+                }
+            });
+        }
+
+        // Example of how to add/change images:
+        // addImageToItem('shirts', 0, 'https://new-image-url.com/shirt1.jpg');
+        // addImageToItem('pants', 1, 'https://new-image-url.com/pants2.jpg');
+        
+        console.log('TRENDLINKS site loaded! Use the addImageToItem() function to easily swap product images.');
+        console.log('Example: addImageToItem("shirts", 0, "https://example.com/new-image.jpg")');
+    </script>
+</body>
+</html>
+
